@@ -1,0 +1,48 @@
+FILE SERVER
+TUJUAN: melayani client dalam request file server
+
+ATURAN PROTOKOL:
+- client harus mengirimkan request dalam bentuk string
+- string harus dalam format
+  REQUEST spasi PARAMETER
+- PARAMETER dapat berkembang menjadi PARAMETER1 spasi PARAMETER2 dan seterusnya
+
+REQUEST YANG DILAYANI:
+- informasi umum:
+  * Jika request tidak dikenali akan menghasilkan pesan
+    - status: ERROR
+    - data: request tidak dikenali
+  * Semua result akan diberikan dalam bentuk JSON dan diakhiri
+    dengan karakter "\r\n\r\n"
+
+LIST
+* TUJUAN: mendapatkan daftar file
+* PARAMETER: tidak ada
+* RESULT:
+  - status: OK, data: list file
+  - status: ERROR, data: pesan kesalahan
+
+GET
+* TUJUAN: mendapatkan isi file
+* PARAMETER:
+  - PARAMETER1: nama file
+* RESULT:
+  - status: OK, data_namafile, data_file (base64)
+  - status: ERROR, data: pesan kesalahan
+
+UPLOAD
+* TUJUAN: mengunggah file ke server
+* PARAMETER:
+  - PARAMETER1: nama file
+  - PARAMETER2: isi file dalam base64
+* RESULT:
+  - status: OK, data: pesan sukses
+  - status: ERROR, data: pesan kesalahan
+
+DELETE
+* TUJUAN: menghapus file di server
+* PARAMETER:
+  - PARAMETER1: nama file
+* RESULT:
+  - status: OK, data: pesan sukses
+  - status: ERROR, data: pesan kesalahan
